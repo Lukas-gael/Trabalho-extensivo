@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <title>Mapa de Reciclagem</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="folium-map" id="map"></div>
+</body>
+<script>
+    // 1. Criar o mapa e centralizá-lo em Curitiba
+    var map = L.map('map', {
+        center: [-25.47, -49.27],
+        zoom: 12,
+        zoomControl: true,
+    });
+
+    // 2. Adicionar a camada de mapa base (OpenStreetMap)
+    L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+        }
+    ).addTo(map);
+
+    // 3. Definir a lista de pontos de coleta
+    var pontos = [
+        {"nome": "Ecoponto Centro", "lat": -25.4284, "lon": -49.2733},
+        {"nome": "Cooperativa Verde Vida", "lat": -25.4432, "lon": -49.2801},
+        {"nome": "Ponto de Coleta Bairro Novo", "lat": -25.4701, "lon": -49.2621},
+        {"nome": "Ecoponto Parque Gomm", "lat": -25.4444178, "lon": -49.2881057},
+        {"nome": "Ecoponto Jandaia", "lat": -25.535639, "lon": -49.278385},
+        {"nome": "Ecoponto Vila Nova", "lat": -25.541333, "lon": -49.243583},
+        {"nome": "Ecoponto Érico Veríssimo", "lat": -25.526861, "lon": -49.250556},
+        {"nome": "Ecoponto Guaçuí", "lat": -25.522278, "lon": -49.263889},
+        {"nome": "Ecoponto Cajuru", "lat": -25.462248, "lon": -49.200155},
+        {"nome": "Ecoponto Campo de Santana", "lat": -25.611111, "lon": -49.3175},
+        {"nome": "Ecoponto Sambaqui", "lat": -25.533056, "lon": -49.263889},
+        {"nome": "Ecoponto Icaraí", "lat": -25.485, "lon": -49.215833},
+        {"nome": "Ecoponto Metropolitano", "lat": -25.419444, "lon": -49.3625},
+    ];
+
+    // 4. Criar um ícone padrão para todos os marcadores
+    var recycleIcon = L.AwesomeMarkers.icon({
+        "markerColor": "green",
+        "iconColor": "white",
+        "icon": "recycle",
+        "prefix": "fa",
+    });
+
+    // 5. Adicionar cada ponto ao mapa usando um laço de repetição
+    pontos.forEach(function(ponto) {
+        L.marker(
+            [ponto.lat, ponto.lon],
+            {icon: recycleIcon}
+        )
+        .bindPopup(ponto.nome)
+        .addTo(map);
+    });
+</script>
+</html>

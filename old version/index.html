@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa de Coletas e Doações</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+
+ 
+
+
+</head>
+<body>
+  <header>
+    <h1>Leva Aonde</h1>
+  </header>
+
+  <section class="instrucoes">
+    <p>Para usar o aplicativo, siga estas etapas simples:</p>
+    <ol>
+      <li>Digite seu endereço abaixo para localizar pontos próximos</li>
+      <li>Escolha o tipo de ação: Reciclagem, Doação ou Eletrônicos</li>
+      <li>Se tiver dúvidas ou quiser cadastrar o seu ponto, vá até a opção de Suporte</li>
+    </ol>
+  </section>
+
+<div class="input-area">
+    <label for="endereco">Digite seu endereço:</label>
+    <input type="text" id="endereco" placeholder="Ex: Rua Exemplo, 123 - Curitiba" />
+    <ul id="sugestoes-endereco" class="sugestoes-lista"></ul>
+    <button class="botao-localizacao" onclick="obterLocalizacao()">📍 Usar minha localização atual</button>
+  </div>
+
+  <main>
+    <div class="container">
+      <button class="botao" onclick="window.location.href='/reciclagem'">VAMOS LÁ</button>
+      <button class="botao" onclick="window.location.href='/suporte'">🛟 Suporte</button>
+    </div>
+  </main>
+  <script defer src="{{ url_for('static', filename='script/localizacaoAtual.js') }}"></script>
+</body>
+</html>

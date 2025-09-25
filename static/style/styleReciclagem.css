@@ -1,0 +1,15 @@
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background-color: #007B5E;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+    iframe {
+      width: 100%;
+      height: 90vh;
+      border: none;
+    }
